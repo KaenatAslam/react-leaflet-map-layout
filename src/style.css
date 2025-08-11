@@ -1,0 +1,74 @@
+/* Reset & Base Styles */
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+/* App Layout */
+.app {
+  display: flex;
+  height: 100vh;
+  background-color: #f9f9f9; /* light background for sidebar contrast */
+}
+
+/* Sidebar Styles */
+.sidebar {
+  width: 320px;
+  max-width: 40%;
+  padding: 16px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.08);
+  overflow-y: auto;
+  background: #fff;
+}
+
+/* Map Container */
+.map-wrap {
+  flex: 1;
+  position: relative;
+}
+
+/* Leaflet Map */
+.leaflet-container {
+  height: 100%;
+  width: 100%;
+}
+
+/* Location List Items */
+.location-item {
+  padding: 10px 8px;
+  border-bottom: 1px solid #eee;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.location-item:hover {
+  background-color: #f0f4f8; /* subtle hover effect */
+}
+
+/* Search Box */
+.search-box {
+  margin-bottom: 12px;
+}
+
+/* Marker Icon Size */
+.marker-icon {
+  width: 30px;
+  height: 30px;
+}
+
+/* Scrollbar Customization for Sidebar (Optional) */
+.sidebar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+  background: #bbb;
+  border-radius: 3px;
+}
+
+.sidebar::-webkit-scrollbar-thumb:hover {
+  background: #999;
+}
