@@ -5,7 +5,7 @@ export const LOCATIONS = [
     desc: "Main Office",
     lat: 33.638,
     lng: 73.071,
-    icon: "/icons/office.png",
+    icon: "/icons/marker-icon.png",
   },
   {
     id: 2,
@@ -13,7 +13,7 @@ export const LOCATIONS = [
     desc: "Storage",
     lat: 33.642,
     lng: 73.075,
-    icon: "/icons/warehouse.png",
+    icon: "/icons/marker-icon.png",
   },
 ];
 

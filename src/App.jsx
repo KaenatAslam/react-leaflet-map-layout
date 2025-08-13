@@ -12,11 +12,12 @@ import "leaflet/dist/leaflet.css";
 import { GeoSearchControl, OpenStreetMapProvider } from "leaflet-geosearch";
 import { LOCATIONS, PATHS } from "./config";
 
-delete L.Icon.Default.prototype._getIconUrl;
-L.Icon.Default.mergeOptions({
-  iconRetinaUrl: "/icons/marker-icon-2x.png",
-  iconUrl: "/icons/marker-icon.png",
-  shadowUrl: "/icons/marker-shadow.png",
+// Custom blue marker
+const customIcon = L.icon({
+  iconUrl: "/icons/custom-blue-marker.png",
+  iconSize: [40, 40],
+  iconAnchor: [20, 40],
+  popupAnchor: [0, -35],
 });
 
 function FlyTo({ position, zoom = 15 }) {
@@ -54,12 +55,6 @@ export default function App() {
     <div className="app">
       <aside className="sidebar">
         <h2 style={{ marginTop: 0 }}>Locations</h2>
-        <div className="search-box">
-          <small>Search (top-left on map):</small>
-          <div style={{ fontSize: 12, color: "#555" }}>
-            Use location search box on the map to fly to places
-          </div>
-        </div>
         <ul style={{ listStyle: "none", padding: 0 }}>
           {LOCATIONS.map((loc) => (
             <li
@@ -84,28 +79,24 @@ export default function App() {
           zoom={13}
           className="leaflet-container"
         >
+          {/* Carto Positron clean theme */}
           <TileLayer
-            attribution="&copy; OpenStreetMap contributors"
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            url="https://cartodb-basemaps-a.global.ssl.fastly.net/light_all/{z}/{x}/{y}{r}.png"
+            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> contributors &copy; <a href="https://www.carto.com/">CARTO</a>'
           />
 
-          {LOCATIONS.map((loc) => {
-            const icon = loc.icon
-              ? L.icon({
-                  iconUrl: loc.icon,
-                  iconSize: [36, 36],
-                  iconAnchor: [18, 36],
-                })
-              : undefined;
-            return (
-              <Marker key={loc.id} position={[loc.lat, loc.lng]} icon={icon}>
-                <Popup>
-                  <strong>{loc.name}</strong>
-                  <div style={{ fontSize: 13 }}>{loc.desc}</div>
-                </Popup>
-              </Marker>
-            );
-          })}
+          {LOCATIONS.map((loc) => (
+            <Marker
+              key={loc.id}
+              position={[loc.lat, loc.lng]}
+              icon={customIcon}
+            >
+              <Popup>
+                <strong>{loc.name}</strong>
+                <div style={{ fontSize: 13 }}>{loc.desc}</div>
+              </Popup>
+            </Marker>
+          ))}
 
           {PATHS.map((coords, i) => (
             <Polyline
